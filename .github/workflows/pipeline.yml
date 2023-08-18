@@ -27,6 +27,7 @@ jobs:
       run: npm run test:unit
     - name: Display softuni username
       run: echo "kkoceva"
+      
   deploy:
     runs-on: ubuntu-latest
     needs: build
