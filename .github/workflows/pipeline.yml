@@ -27,7 +27,7 @@ jobs:
       run: npm run test:unit
     - name: Display softuni username
       run: echo "kkoceva"
-      
+
   deploy:
     runs-on: ubuntu-latest
     needs: build
@@ -37,3 +37,24 @@ jobs:
       with:
         service-id: ${{ secrets.SERVICE_ID }}
         api-key: ${{ secrets.API_KEY }}
+
+  ui_tests:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js 14.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14.x
+        cache: 'npm'
+    - name: Installing NPM
+      run: npm install
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+    - name: Running UI Tests
+      run: npm run test:ui
+      env:
+        DEPLOYED_URL: ${{ vars.DEPLOYED_URL }}
+
+
