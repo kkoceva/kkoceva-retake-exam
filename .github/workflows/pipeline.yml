@@ -56,5 +56,3 @@ jobs:
       run: npm run test:ui
       env:
         DEPLOYED_URL: ${{ vars.DEPLOYED_URL }}
-
-
