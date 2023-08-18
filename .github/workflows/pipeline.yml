@@ -27,3 +27,9 @@ jobs:
       run: npm run test:unit
     - name: Display softuni username
       run: echo "kkoceva"
+
+    - name: Deploy to production
+      uses: johnbeynon/render-deploy-action@v0.0.8
+      with:
+        service-id: ${{ secrets.SERVICE_ID }}
+        api-key: ${{ secrets.API_KEY }}
